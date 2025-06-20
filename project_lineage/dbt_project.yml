@@ -31,6 +31,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   project_lineage:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+
+    # STAGING: as ephemeral (no table) or views with a stg_ prefix
+    staging:
+      +materialized: ephemeral         # inlines as CTEs
+      # OR: +materialized: view
+      #     +alias: "stg_{{ model_name }}"
+
+    # INTERMEDIATE: persistent tables with int_ prefix
+    intermediate:
+      +materialized: table
+      +alias: "int_{{ model_name }}"
+
+    # MARTS: final tables, no prefix (or use mart_{{ model_name }})
+    marts:
+      +materialized: table
+      +alias: "mart_{{ model_name }}"
