@@ -29,6 +29,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
+
+
 models:
   project_lineage:
 
@@ -41,9 +43,9 @@ models:
     # INTERMEDIATE: persistent tables with int_ prefix
     intermediate:
       +materialized: table
-      +alias: "int_{{ model_name }}"
+     
 
     # MARTS: final tables, no prefix (or use mart_{{ model_name }})
     marts:
       +materialized: table
-      +alias: "mart_{{ model_name }}"
+      
