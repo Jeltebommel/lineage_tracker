@@ -1,0 +1,5 @@
+product_id,product_name,category,legacy_code
+1,Widget,Tools,W-100
+2,,Electronics,G-200
+03,Doohickey,,D-300
+004,Gadget,,G-400
